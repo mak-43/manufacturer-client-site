@@ -1,0 +1,6 @@
+.form-container {
+    border-radius: 9px;
+    background: #e8e7e9;
+    box-shadow: 8px 8px 13px #b5b4b6,
+        -8px -8px 13px #ffffff;
+}
