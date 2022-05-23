@@ -6,6 +6,7 @@ import Header from './Components/Shared/Navbar/Header';
 import Home from './Components/Home/Home';
 import Login from './Components/Login/Login';
 import SignUp from './Components/Login/SignUp';
+import Purchase from './Components/Home/Purchase';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path='/' element={<Home/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/signup' element={<SignUp/>}></Route>
+        <Route path='/purchase/:id' element={<Purchase/>}></Route>
       </Routes>
       <Footer/>
     </div>
