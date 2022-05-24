@@ -6,7 +6,7 @@ const SingleProduct = ({product}) => {
     const navigate=useNavigate()
     return (
         <div className='product flex flex-col justify-center items-center p-5'>
-            <div className='flex justify-center  '><img className='rounded-t-xl  w-full h-full' src={img} alt="" /></div>
+            <div className='flex justify-center  '><img className='rounded-t-xl  w-full h-full img-fluid' src={img} alt="" /></div>
             <div className='flex flex-col text-left justify-center leading-3 mb-4 botom font-semibold'>
                 <p>ID: {_id}</p>
                 <p>Name: {name}</p>
