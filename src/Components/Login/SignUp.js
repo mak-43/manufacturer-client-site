@@ -1,10 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithGithub, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import { toast } from 'react-toastify'; 
 import Loading from '../Shared/Loading/Loading';
 import Social from './Social';
+import useToken from '../Hooks/useToken';
 
 const SignUp = () => {
     const [
@@ -14,7 +15,7 @@ const SignUp = () => {
         loading
       ] = useCreateUserWithEmailAndPassword(auth,{sendEmailVerification:true});
       
-      const [signInWithGoogle,  gerror,gloading] = useSignInWithGoogle(auth);
+      const [signInWithGoogle, guser, gerror,gloading] = useSignInWithGoogle(auth);
       const [signInWithGithub,  giterror,gitloading] = useSignInWithGithub(auth);
       const [updateProfile, ] = useUpdateProfile(auth);
       const location = useLocation()
@@ -24,7 +25,12 @@ const SignUp = () => {
       const emailRef=useRef('')
       const nameRef=useRef('')
       //const [agree,setAgree]=useState(false)
-      const navigate=useNavigate()
+      const navigate=useNavigate() 
+    //   const[token]=useToken(user||guser)
+    //   if(token){
+    //     navigate('/')
+    //     }   
+     
       let errorElement
     const handleSubmit =async(e)  => {
         e.preventDefault()
@@ -32,10 +38,9 @@ const SignUp = () => {
         const email=emailRef.current.value
         const password=passwordRef.current.value  
        await createUserWithEmailAndPassword(email,password)
+        navigate('/')
         await updateProfile({displayName:name})
-        navigate(from, { replace: true });
-        toast('Registered')
-           
+          
     }  
     if (error|| gerror||giterror) {     
         errorElement=   <p className='text-red-700'> {error?.message}{gerror?.message}{giterror?.message} </p>

@@ -1,5 +1,5 @@
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import Loading from '../Shared/Loading/Loading';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -7,7 +7,11 @@ import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 import './Login.css'
 
+
 import Social from './Social';
+import useToken from '../Hooks/useToken';
+
+
 const Login = () => {
     const [
         signInWithEmailAndPassword,
@@ -20,23 +24,31 @@ const Login = () => {
     const [signInWithGoogle, guser, gloading, gerror] = useSignInWithGoogle(auth)
     const [signInWithGithub, gituser, gitloading, giterror] = useSignInWithGithub(auth);
     const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
+
     const emailRef = useRef("");
     const passwordRef = useRef("");
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
  
-  
-
+    const [token]=useToken(user||guser)
     const location = useLocation()
     let from = location.state?.from?.pathname || "/";
     const navigate = useNavigate()
+    let signInError;
+    useEffect(()=>{
+        if(token){
+            navigate(from,{replace:true})
+        }
+    },[token,from,navigate])
 
+ 
     if (loading) {
         return <Loading/>
     }
     if (user||guser) {
         navigate(from, { replace: true });
     }
+   
 
 
     const handleSubmit = async (e) => {
@@ -91,10 +103,10 @@ const Login = () => {
                 </div>
 
                 <div className='flex flex-col items-center justify-center '>
-                    {/* <div onClick={() => signInWithGoogle()} className='w-1/2 flex justify-center items-center text-black gap-2 bg-gray-400  py-2 mt-2  rounded-xl hover:text-blue-700  '>
+                    <div onClick={() => signInWithGoogle()} className='w-1/2 flex justify-center items-center text-black gap-2 bg-gray-400  py-2 mt-2  rounded-xl hover:text-blue-700  '>
                         <img className='h-8' />
                         <button className='font-bold'> Google Sign In</button>
-                    </div> */}
+                    </div>
                     {/* <div className='w-1/2 flex justify-center items-center text-black  bg-gray-400  py-2 mt-2  rounded-xl hover:text-blue-700  '>
                         <img className='h-8 ' src={facebook} alt="" />
                         <button className='font-bold'> Facebook Sign In</button>
@@ -105,7 +117,7 @@ const Login = () => {
                     </div> */}
 
                 </div>
-                <Social />
+                
 
             </div>
         </div>

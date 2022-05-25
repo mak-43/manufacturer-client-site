@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import useToken from '../Hooks/useToken';
 import Loading from '../Shared/Loading/Loading';
 
 
@@ -9,10 +10,18 @@ import Loading from '../Shared/Loading/Loading';
 const Social = () => {
     const [signInWithGoogle,guser,gloading,gerror]=useSignInWithGoogle(auth)
     const [signInWithGithub, gituser,gitloading, giterror] = useSignInWithGithub(auth);
-   
-    const navigate = useNavigate();
-   const location = useLocation();
-   let from = location.state?.from?.pathname || "/";
+    const [token]=useToken(guser)
+    const location = useLocation()
+    let from = location.state?.from?.pathname || "/";
+    const navigate = useNavigate()
+
+    // useEffect(()=>{
+    //     if(token){
+    //         navigate(from,{replace:true})
+    //     }
+    // },[token,from,navigate])
+
+
 
    let errorElement;
  
