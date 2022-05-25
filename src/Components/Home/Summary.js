@@ -5,7 +5,7 @@ const Summary = () => {
         <div className='my-5'>
             <div className='my-4'> <h2>Millions Business Trust Us </h2>
                 <h4>Try to Understand Users Expectation</h4>
-                <div className='flex justify-center items-center mx-auto gap-2 w-1/2 '>
+                <div className='flex justify-center items-center mx-auto gap-5 w-1/2 '>
                     <hr className='text-accent  w-1/2 ' /> <hr className='text-primary  w-1/3 ' /> <hr className='text-secondary  w-1/4' />
                 </div>
             </div>

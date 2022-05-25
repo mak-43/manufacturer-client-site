@@ -17,6 +17,11 @@ import MyOrder from './Components/Dashboard/MyOrder';
 import CancelModal from './Components/Dashboard/CancelModal';
 import Payment from './Components/Dashboard/Payment';
 import NotFound from './Components/Shared/NotFound/NotFound';
+import Users from './Components/Dashboard/Users';
+import RequireAdmin from './Components/Login/RequireAdmin';
+import ManageOrders from './Components/Dashboard/ManageOrders';
+import Allusers from './Components/Dashboard/Allusers';
+import ManageProducts from './Components/Dashboard/ManageProducts';
 
 function App() {
   return (
@@ -30,9 +35,12 @@ function App() {
         <Route path='/dashboard' element={<RequireAuth><Dashboard/></RequireAuth>}>
         <Route index element={<MyProfile/>}></Route>
         <Route path='review' element={<AddReview/>}></Route>
-        <Route path='order' element={<MyOrder>
-        </MyOrder>}></Route>
+        <Route path='order' element={<MyOrder/>}></Route>
         <Route path='modal' element={<CancelModal/>}></Route>
+        <Route path='users' element={<Users/>}></Route>
+        <Route path='manageorders' element={<ManageOrders/>}></Route>
+        <Route path='alluser' element={<Allusers/>}></Route>
+        <Route path='manageproducts' element={<ManageProducts/>}></Route>
 
         </Route>
         <Route path='/payment/:id' element={<Payment></Payment>}></Route>

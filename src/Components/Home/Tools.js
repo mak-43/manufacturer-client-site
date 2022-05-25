@@ -14,7 +14,7 @@ const Tools = () => {
             <div className=' grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-5  '>
 
                 {
-                    products.map(product => <SingleProduct
+                    products.slice(0,6).map(product => <SingleProduct
                         key={product._id}
                         product={product}
                     >
