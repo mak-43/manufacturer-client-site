@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import Loading from '../Shared/Loading/Loading';
 import { useQuery } from 'react-query'
 import { loadStripe } from '@stripe/stripe-js';
-import {Elements} from '@stripe/react-stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 import CheckoutForm from './CheckoutForm';
 
 const stripePromise = loadStripe('pk_test_51L1x9rINdMRuzrmmOATQIGakerryL5DEiZf2RLr9XXzdgwFzhtTIGk61xaQcPdwsWx1x6pzBqGR58kjx4GVmXL5F00Xo1OXy8H');
@@ -40,7 +40,7 @@ const Payment = () => {
                     <Elements stripe={stripePromise}>
                         <CheckoutForm product={product} />
                     </Elements>
-                 
+
                 </div>
             </div>
 

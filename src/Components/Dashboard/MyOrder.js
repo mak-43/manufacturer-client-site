@@ -29,7 +29,7 @@ const MyOrder = () => {
 
         }
         getOrders();
-    }, [user,orders])
+    }, [user, orders])
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure ?')
         if (proceed) {
@@ -44,12 +44,12 @@ const MyOrder = () => {
                 })
         }
     }
-    const handlePayment=id=>{
+    const handlePayment = id => {
         navigate(`/payment/${id}`)
     }
     return (
         <div>
-            
+
             <h3 className='my-4'>My Orders : {orders.length}</h3>
             <div className='flex flex-col justify-center items-center gap-1'><img className='h-10 rounded-xl' src={user.photoURL} alt="" />
                 <p>{user.displayName}</p>
@@ -60,7 +60,7 @@ const MyOrder = () => {
                         <tr>
                             <th scope="col">Product Name</th>
 
-                         
+
                             <th scope="col">Available Quantity</th>
                             <th scope="col">Minimum Quantity</th>
                             <th scope="col">Unit Price</th>
@@ -80,15 +80,15 @@ const MyOrder = () => {
 
                                     <td >{p.name} </td>
 
-                                
+
                                     <td>{p.available}</td>
                                     <td>{p.minimum}</td>
                                     <td>{p.price}</td>
                                     <td>{p.order}</td>
-                                    <td><button className='btn btn-accent' onClick={()=>handlePayment(p._id)}>Payment</button></td>
+                                    <td><button className='btn btn-accent' onClick={() => handlePayment(p._id)}>Payment</button></td>
                                     <td>
-                                
-                                        <button className='text-danger font-bold' onClick={()=>handleDelete(p._id)} >X</button></td>
+
+                                        <button className='text-danger font-bold' onClick={() => handleDelete(p._id)} >X</button></td>
                                 </tr>
 
 
@@ -102,7 +102,7 @@ const MyOrder = () => {
                 </table>
 
             }
-           
+
         </div>
     );
 };

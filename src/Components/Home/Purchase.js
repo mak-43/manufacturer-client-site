@@ -47,7 +47,7 @@ const Purchase = () => {
                 <div><img style={{ height: '300px ', width: '100%' }} src={product.img} alt="" /></div>
 
                 <input placeholder='Name' value={user.email} className='border p-2 mb-2 ' {...register("email", { required: true })} />
-                <div  className='flex flex-col justify-start items-start '>
+                <div className='flex flex-col justify-start items-start '>
                     <div className='flex justify-center items-center gap-2'>
                         <label>Image url:</label>
                         <input placeholder='img' value={product.img} className='border p-2 mb-2 ' {...register("img", { required: true })} />
@@ -83,7 +83,7 @@ const Purchase = () => {
 
                     <div className='flex justify-center items-center gap-2 '>
                         <label>Order Quantity :</label>
-                        <input placeholder='Order Quantity' type='number'  className='border p-2 mb-2 ' {...register("order", { min: `${product.minmum}`, max: `${product.available}` })} /></div>
+                        <input placeholder='Order Quantity' type='number' className='border p-2 mb-2 ' {...register("order", { min: `${product.minmum}`, max: `${product.available}` })} /></div>
 
                 </div>
 

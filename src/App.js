@@ -16,6 +16,7 @@ import AddReview from './Components/Dashboard/AddReview';
 import MyOrder from './Components/Dashboard/MyOrder';
 import CancelModal from './Components/Dashboard/CancelModal';
 import Payment from './Components/Dashboard/Payment';
+import NotFound from './Components/Shared/NotFound/NotFound';
 
 function App() {
   return (
@@ -35,6 +36,8 @@ function App() {
 
         </Route>
         <Route path='/payment/:id' element={<Payment></Payment>}></Route>
+
+        <Route path='*' element={<NotFound/>}></Route>
       </Routes>
       <Footer/>
       <ToastContainer />
