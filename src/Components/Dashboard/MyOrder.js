@@ -22,14 +22,31 @@ const MyOrder = () => {
 
     useEffect(() => {
         const email = user.email
-        const getOrders = async () => {
+        
             const url = `http://localhost:5000/myorder?email=${email}`
-            const { data } = await axios.get(url)
-            setOrder(data)
+            
+            fetch(url,{
+                method:'get',
+                headers:{
+                    'authorization':`Bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
+            .then(res => {
+                console.log('res', res);
+                if (res.status === 401 || res.status === 403) {
+                    signOut(auth);
+                    localStorage.removeItem('accessToken');
+                    navigate('/');
+                }
+                return res.json()
+            })
+            .then(data => {
 
-        }
-        getOrders();
-    }, [user, orders])
+                setOrder(data);
+            });
+
+    
+    }, [])
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure ?')
         if (proceed) {

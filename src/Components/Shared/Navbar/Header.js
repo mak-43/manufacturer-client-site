@@ -10,6 +10,7 @@ const Header = () => {
     const [user] = useAuthState(auth)
     const handleSignOut = () => {
         signOut(auth)
+        localStorage.removeItem('accessToken')
     }
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">

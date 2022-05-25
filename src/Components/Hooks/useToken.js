@@ -7,7 +7,7 @@ const useToken = user => {
         const currentUser = { email: email }
 
         if (email) {
-
+            console.log(email)
             fetch(`http://localhost:5000/user/${email}`, {
                 method: 'put',
                 headers: {

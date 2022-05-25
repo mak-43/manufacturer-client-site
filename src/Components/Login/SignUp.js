@@ -18,18 +18,21 @@ const SignUp = () => {
       const [signInWithGoogle, guser, gerror,gloading] = useSignInWithGoogle(auth);
       const [signInWithGithub,  giterror,gitloading] = useSignInWithGithub(auth);
       const [updateProfile, ] = useUpdateProfile(auth);
+
+
       const location = useLocation()
     let from = location.state?.from?.pathname || "/";
-    
+    const[token]=useToken(user||guser)
+      
       const passwordRef=useRef('')
       const emailRef=useRef('')
       const nameRef=useRef('')
       //const [agree,setAgree]=useState(false)
       const navigate=useNavigate() 
-    //   const[token]=useToken(user||guser)
-    //   if(token){
-    //     navigate('/')
-    //     }   
+     
+      if(token){
+        navigate('/')
+      }
      
       let errorElement
     const handleSubmit =async(e)  => {
@@ -38,7 +41,7 @@ const SignUp = () => {
         const email=emailRef.current.value
         const password=passwordRef.current.value  
        await createUserWithEmailAndPassword(email,password)
-        navigate('/')
+     
         await updateProfile({displayName:name})
           
     }  
@@ -71,10 +74,10 @@ const SignUp = () => {
                     <hr className='w-1/5' /> OR <hr className='w-1/5' />
                 </div>
                 <div className='flex flex-col items-center justify-center '>
-                    {/* <div onClick={()=>signInWithGoogle()}  className='w-1/2 flex justify-center items-center text-black gap-2 bg-gray-400  py-2 mt-2  rounded-xl hover:text-blue-700  '>
+                    <div onClick={()=>signInWithGoogle()}  className='w-1/2 flex justify-center items-center text-black gap-2 bg-gray-400  py-2 mt-2  rounded-xl hover:text-blue-700  '>
                         <img className='h-8'  />
                         <button className='font-bold'> Google Sign In</button>
-                    </div> */}
+                    </div>
                     {/* <div className='w-1/2 flex justify-center items-center text-black  bg-gray-400  py-2 mt-2  rounded-xl hover:text-blue-700  '>
                         <img className='h-8 ' src={facebook} alt="" />
                         <button className='font-bold'> Facebook Sign In</button>
@@ -85,7 +88,7 @@ const SignUp = () => {
                     </div> */}
 
                 </div>
-                <Social/>
+                {/* <Social/> */}
             </div>
         </div>
     );

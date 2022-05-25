@@ -45,9 +45,7 @@ const Login = () => {
     if (loading) {
         return <Loading/>
     }
-    if (user||guser) {
-        navigate(from, { replace: true });
-    }
+   
    
 
 
