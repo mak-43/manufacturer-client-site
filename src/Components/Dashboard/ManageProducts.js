@@ -6,26 +6,78 @@ import auth from '../../firebase.init';
 
 const ManageProducts = () => {
     const [user] = useAuthState(auth)
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, watch,reset, formState: { errors } } = useForm();
+    const imgStorageKey='6d58d8deea3773d04ec3b9955d466d7f'
+
     const onSubmit = data => {
         console.log(data)
-        const url = `http://localhost:5000/productsadd`
-        fetch(url, {
-            method: 'post',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log('success', data)
-                toast('Product Added')
+        const image = data.img[0];
+        const formData = new FormData();
+        formData.append('image', image);
+        const url=`https://api.imgbb.com/1/upload?key=${imgStorageKey}`
 
-            })
+        fetch(url,{
+            method:'post',
+            body:formData
+        })
+        .then(res=>res.json())
+        .then(result=>{
+            if(result.success){
+                const img=result.data.url
+                const product={
+                    name:data.name,
+                    img:img,
+                    description:data.description,
+                    minimum:data.minimum,
+                    available:data.available,
+                    price:data.price
+                }
+                //send to DB 
+
+                fetch('http://localhost:5000/productsadd',{
+                    method:'post',
+                    headers:{
+                        'content-type':'application/json',
+                        authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                    },
+                    body:JSON.stringify(product)
+
+                })
+                .then(res=>res.json())
+                .then(inserted=>{
+                    if(inserted.insertedId){
+                        toast.success('product added')
+                        reset()
+                    }
+                    else{
+                        toast.error('Failed to add the Products')
+                    }
+                })
+            }
+            console.log('ImgBB',result)
+        })
+
+
+
+        console.log(data)
+      
+        // fetch(`http://localhost:5000/productsadd`, {
+        //     method: 'post',
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(data)
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         console.log('success', data)
+        //         toast('Product Added')
+
+        //     })
 
 
     }
+
 
     return (
         <div className='w-50 mx-auto my-4'>
