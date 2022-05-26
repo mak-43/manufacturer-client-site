@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useQuery } from 'react-query';
+import Loading from '../Shared/Loading/Loading';
 
 const Pro = () => {
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
 
     
-  const [products, setProducts] = useState([])
-  const {name,education,linkdin,location,phone,email}=products([])
-    useEffect(() => {
-        fetch('http://localhost:5000/profile')
-            .then(res => res.json())
-            .then(data => setProducts(data))
-    }, [])
+ 
+  
 
+    const { data: products, isLoading, error, refetch } = useQuery('product', () => fetch(`https://murmuring-fortress-98073.herokuapp.com/profile`).then(res => res.json()))
+
+    if (isLoading) {
+        return <Loading />
+    }
+    const {name,education,linkdin,location,phone,email}=products([])
     return (
         <div>
             <div>

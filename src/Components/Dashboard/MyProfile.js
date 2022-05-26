@@ -25,7 +25,7 @@ const MyProfile = () => {
         //     phone:data.phone,
         //     linkdin:data.linkdin
         // }
-        const url = `http://localhost:5000/profile/${email}`
+        const url = `https://murmuring-fortress-98073.herokuapp.com/profile/${email}`
         fetch(url, {
             method: 'put',
             headers: {
