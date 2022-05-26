@@ -22,15 +22,15 @@ const MyOrder = () => {
 
     useEffect(() => {
         const email = user.email
-        
-            const url = `http://localhost:5000/myorder?email=${email}`
-            
-            fetch(url,{
-                method:'get',
-                headers:{
-                    'authorization':`Bearer ${localStorage.getItem('accessToken')}`
-                }
-            })
+
+        const url = `https://murmuring-fortress-98073.herokuapp.com/myorder?email=${email}`
+
+        fetch(url, {
+            method: 'get',
+            headers: {
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
             .then(res => {
                 console.log('res', res);
                 if (res.status === 401 || res.status === 403) {
@@ -45,12 +45,12 @@ const MyOrder = () => {
                 setOrder(data);
             });
 
-    
+
     }, [])
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure ?')
         if (proceed) {
-            const url = `http://localhost:5000/delete/${id}`
+            const url = `https://murmuring-fortress-98073.herokuapp.com/delete/${id}`
             fetch(url, {
                 method: 'DELETE'
             })

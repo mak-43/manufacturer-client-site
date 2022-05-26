@@ -7,8 +7,8 @@ const useToken = user => {
         const currentUser = { email: email }
 
         if (email) {
-            console.log('current user',currentUser)
-            fetch(`http://localhost:5000/user/${email}`, {
+            console.log('current user', currentUser)
+            fetch(`https://murmuring-fortress-98073.herokuapp.com/user/${email}`, {
                 method: 'put',
                 headers: {
                     'content-type': 'application/json'

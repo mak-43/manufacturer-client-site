@@ -23,6 +23,7 @@ import ManageOrders from './Components/Dashboard/ManageOrders';
 import Allusers from './Components/Dashboard/Allusers';
 import ManageProducts from './Components/Dashboard/ManageProducts';
 import Portfolio from './Components/Portfolio/Portfolio';
+import Blogs from './Components/Blogs/Blogs';
 
 function App() {
   return (
@@ -43,9 +44,10 @@ function App() {
         <Route path='alluser' element={<Allusers/>}></Route>
         <Route path='manageproducts' element={<ManageProducts/>}></Route>
         </Route>
-        
+
         <Route path='/payment/:id' element={<Payment></Payment>}></Route>
         <Route path='/portfolio' element={<Portfolio/>}></Route>
+        <Route path='/blogs' element={<Blogs/>}></Route>
 
         <Route path='*' element={<NotFound/>}></Route>
       </Routes>

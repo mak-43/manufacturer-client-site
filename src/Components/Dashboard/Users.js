@@ -4,10 +4,10 @@ import Loading from '../Shared/Loading/Loading';
 import UserRow from './UserRow';
 
 const Users = () => {
-    const { data: users, isLoading ,refetch} = useQuery('users', () => fetch('http://localhost:5000/user',{
-        method:'get',
-        headers:{
-            authorization:`Bearer ${localStorage.getItem('accessToken')}`
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://murmuring-fortress-98073.herokuapp.com/user', {
+        method: 'get',
+        headers: {
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`
         }
     }).then(res => res.json()))
 
@@ -19,26 +19,26 @@ const Users = () => {
             <h2 className='text-2xl'>All users: {users.length}</h2>
             <div class="overflow-x-auto">
                 <table class="table w-full">
-                
+
                     <thead>
                         <tr>
                             <th></th>
                             <th>Name</th>
-                            <th>Job</th>
-                            <th>Favorite Color</th>
+                            <th>Admin</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
-                     {
-                         users.map((user,index)=><UserRow
-                         key={user._id}
-                         user={user}
-                         index={index}
-                         refetch={refetch}
-                         ></UserRow>)
-                     }
-                       
-                 
+                        {
+                            users.map((user, index) => <UserRow
+                                key={user._id}
+                                user={user}
+                                index={index}
+                                refetch={refetch}
+                            ></UserRow>)
+                        }
+
+
                     </tbody>
                 </table>
             </div>

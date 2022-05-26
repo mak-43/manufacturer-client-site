@@ -10,7 +10,7 @@ const stripePromise = loadStripe('pk_test_51L1x9rINdMRuzrmmOATQIGakerryL5DEiZf2R
 const Payment = () => {
     const { id } = useParams()
 
-    const { data: product, isLoading, error, refetch } = useQuery('product', () => fetch(`http://localhost:5000/payment/${id}`).then(res => res.json()))
+    const { data: product, isLoading, error, refetch } = useQuery('product', () => fetch(`https://murmuring-fortress-98073.herokuapp.com/payment/${id}`).then(res => res.json()))
 
     if (isLoading) {
         return <Loading />

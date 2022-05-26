@@ -15,11 +15,11 @@ const CheckoutForm = ({ product }) => {
 
     const { price, name, email } = product
     useEffect(() => {
-        fetch('http://localhost:5000/create-payment-intent', {
+        fetch('https://murmuring-fortress-98073.herokuapp.com/create-payment-intent', {
             method: 'post ',
             headers: {
                 'content-type': 'application/json',
-                // 'authorization':`Bearer ${localStorage.getItem('accessToken')}`
+                'authorization': `Bearer ${localStorage.getItem('accessToken')}`
             },
             body: JSON.stringify({ price })
         })

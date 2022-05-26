@@ -15,7 +15,7 @@ const Purchase = () => {
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
         console.log(data)
-        const url = `http://localhost:5000/tools`
+        const url = `https://murmuring-fortress-98073.herokuapp.com/tools`
         fetch(url, {
             method: 'post',//thakle update korbe na thakle add koreb put
             headers: {
@@ -31,7 +31,7 @@ const Purchase = () => {
             })
 
     }
-    const { data: product, isLoading, error, refetch } = useQuery('product', () => fetch(`http://localhost:5000/tools/${id}`).then(res => res.json()))
+    const { data: product, isLoading, error, refetch } = useQuery('product', () => fetch(`https://murmuring-fortress-98073.herokuapp.com/tools/${id}`).then(res => res.json()))
 
     if (isLoading) {
         return <Loading />
