@@ -24,6 +24,7 @@ import Allusers from './Components/Dashboard/Allusers';
 import ManageProducts from './Components/Dashboard/ManageProducts';
 import Portfolio from './Components/Portfolio/Portfolio';
 import Blogs from './Components/Blogs/Blogs';
+import Pro from './Components/Dashboard/Pro';
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
         <Route path='/payment/:id' element={<Payment></Payment>}></Route>
         <Route path='/portfolio' element={<Portfolio/>}></Route>
         <Route path='/blogs' element={<Blogs/>}></Route>
+        <Route path='/pro' element={<Pro/>}></Route>
 
         <Route path='*' element={<NotFound/>}></Route>
       </Routes>
