@@ -25,7 +25,7 @@ const MyProfile = () => {
         //     phone:data.phone,
         //     linkdin:data.linkdin
         // }
-        const url = `https://murmuring-fortress-98073.herokuapp.com/profile/${email}`
+        const url = `http://localhost:5000/profile/${email}`
         fetch(url, {
             method: 'put',
             headers: {
@@ -63,7 +63,7 @@ const MyProfile = () => {
                     <input className='border p-2 mb-2 btn btn-warning' type="submit" value='save' />
                 </form>
             </div>
-            {/* <Pro/> */}
+            <Pro/>
         </div>
     );
 };
