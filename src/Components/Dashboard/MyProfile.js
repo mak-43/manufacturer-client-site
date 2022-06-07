@@ -3,13 +3,14 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
+import Modal from './Modal';
 import Pro from './Pro';
 
 const MyProfile = () => {
     const [user] = useAuthState(auth)
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
     
- 
+    const [del,setDel]=useState(null)
 
     
     const onSubmit = data => {
@@ -60,9 +61,14 @@ const MyProfile = () => {
                     <input placeholder='Phone Number' className='border p-2 mb-2 ' {...register("phone", { required: true })} />
                     <input placeholder='LinkdIn link' className='border p-2 mb-2 ' {...register("linkdin")} />
 
-                    <input className='border p-2 mb-2 btn btn-warning' type="submit" value='save' />
+                    <input type="text" placeholder="Type here" class="input w-full max-w-xs" />
+                    <input  className='border p-2 mb-2 btn btn-warning' type="submit" value='save' />
+                    
+
                 </form>
             </div>
+        
+    
             <Pro/>
         </div>
     );

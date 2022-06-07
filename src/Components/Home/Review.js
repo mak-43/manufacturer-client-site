@@ -6,7 +6,7 @@ import "./Review.css";
 const Review = (props) => {
   const { displayName, photoURL, reviewdes, review } = props.review;
  
-  return (    <div className="container mt-3 pt-3 py-4 rounded shadow text-justify px-4">
+  return (    <div className="container mt-3 pt-3 py-4 rounded shadow text-justify ">
   <div className="d-flex">
     <img className="img-fluid img-review "  src={photoURL} alt="" />
     <Fade top>

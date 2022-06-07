@@ -7,7 +7,7 @@ const Tools = () => {
         fetch('https://murmuring-fortress-98073.herokuapp.com/tools')
             .then(res => res.json())
             .then(data => setProducts(data))
-    }, [])
+    }, [products])
     return (
         <div className='my-5'>
             <h2 className='my-3'>Tools</h2>

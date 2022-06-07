@@ -11,7 +11,7 @@ import CancelModal from './CancelModal';
 import { toast } from 'react-toastify';
 const MyOrder = () => {
     const [user] = useAuthState(auth)
-    const [d, setD] = useState([])
+  
     const [orders, setOrder] = useState([])
 
     const location = useLocation();
